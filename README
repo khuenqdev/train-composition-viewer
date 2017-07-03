@@ -1,0 +1,74 @@
+*******************************************************************
+*             PLAYMORE GAMES TRAIN COMPOSITION VIEWER             *
+*******************************************************************
+
+**** GENERAL *****
+Read all tasks first. You don't need to complete tasks in order eg. 
+if your solution to step 4 would solve earlier steps, that's cool- 
+Functionality is more valued than looks, but CEO's usually like
+pages that are at least a bit fancy. 
+
+**** TRAIN COMPOSITION VIEWER ****
+In this task you will create a page that is automatically populated 
+with a live data from the digitrafic-service. You have lot of freedom
+when choosing your approach. 
+
+**** TASKS ****
+1) Modernize the template
+
+In the /src directory you can find a html-file. This file displays 
+train compositions in particular routes. Your task is to modernize this
+page. It needs to be responsive and scale well in a smaller&larger 
+screens too. A touch of styling would go long way. 
+
+You can change the code how you wish, and you should apply your 
+best practices. That means that use whatever frameworks you would 
+use to create a page. 
+
+
+2) Making it interactive
+
+Let's make the page live again by integrate digitrafic.fi JSON API's. 
+
+You can use https://rata.digitraffic.fi/api/v1/live-trains?station=SLO 
+to get a list of trains passing by a station. Go ahead and populate 
+earlier page with train numbers. This information is in 'trainType' and
+'trainNumber' -fields. 
+
+Prep the page you modernized earlier. Delete the static content and 
+populate the page with the train types and numbers from the above API. 
+This should give you a page that list short train numbers only. 
+
+3) Adding train compositions
+
+Train compositions can be fetched from 
+https://rata.digitraffic.fi/api/v1/compositions/960?departure_date=2017-05-02
+
+From the above link: 
+  960 is the 'trainNumber'
+  departure_date should be filled with the current departure date fetched
+  from the live-trains API above. That field is called 'departureDate' in 
+  the JSON.
+
+From the responses you can find 'journeySections'. Under it you can find
+  'beginTimeTableRow'->'stationShortCode' = departure station we want to list
+  'endTimeTableRow' -> 'stationShortCode' = destination station we want to list
+  'locomotiveType' = The locomotive type we want to list
+  'powerType' = The power type want to list
+  'wagons' -> 'wagonType' = wagon types we want to list 
+  'maxiumSpeed' = the speed, doh
+  'totalLength' = the lenght of the train
+
+Include this additional information the page you already created. You 
+may choose how to present this information.
+
+
+4) Send your page to us
+
+zip your working directory and send it back via email. You can also create 
+a public repository and give us a link to it too. 
+
+BONUS: Add a query string parameter 'station' and pass that to the API's
+BONUS: Add to the page information which train is moving and which is not.
+API documentation can be found on here. 
+https://translate.google.com/translate?hl=en&sl=fi&tl=en&u=https%3A%2F%2Frata.digitraffic.fi%2Fapi%2Fv1%2Fdoc%2Findex.html  

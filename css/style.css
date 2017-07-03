@@ -1,0 +1,47 @@
+/** This file contains custom styling of the pages **/
+
+#wrapper {
+    padding: 30px;
+}
+
+#content {
+    padding: 10px;
+}
+
+#content .train-info {
+    text-align: center;
+}
+
+#content .train-info-content {
+    height: 200px;
+    overflow: hidden;
+}
+
+#content .train-info .route {
+    color: orange;
+}
+
+#content .train-info-content .running {
+    color: limegreen;
+}
+
+#content .train-info-content .not-running {
+    color: red;
+}
+
+#content .station-opt {
+    text-align: center;
+    margin: 10px;
+}
+
+#content .station-opt select {
+    border: 1px gray solid;
+    border-radius: 5px;
+    height: 25px;
+}
+
+.page-footer {
+    padding-top: 9px;
+    border-top: 1px solid #eee;
+    text-align: center;
+}

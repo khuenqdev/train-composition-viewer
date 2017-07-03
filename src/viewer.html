@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Template created from Bootstrap raw template -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Metadata -->
+    <meta name="description" content="Train Composition Viewer">
+    <meta name="author" content="Khue Quang Nguyen">
+    <link rel="icon" href="../favicon.ico">
+
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Train Composition Viewer</title>
+
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="../css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div id="wrapper">
+    <!-- For utilizing handlebars template -->
+    <script id="content-template" type="text/x-handlebars-template">
+
+        <!-- Header -->
+        <div class="page-header">
+            <h1>&#128646; {{header_title}}</h1>
+        </div>
+
+        <!-- Main content -->
+        <div class="row" id="content">
+            <div class="station-opt">
+                <label for="stations">Stations</label>&nbsp;
+                <select class="station-selector" onchange="changeStation(this)" id="stations">
+                    {{#stations}}
+                    <option value="{{stationShortCode}}">{{stationName}}</option>
+                    {{/stations}}
+                </select>
+            </div>
+
+            {{#train_compositions}}
+            <div class="col-sm-4">
+                <div class="panel {{panel_type}}">
+                    <div class="panel-heading">
+                        <!-- trainType + trainNumber beginStation - endStation -->
+                        <h3 class="panel-title train-info">{{train_id}} {{#if route}}<span class="route">[{{route}}]</span>{{/if}}</h3>
+                    </div>
+                    <div class="panel-body train-info train-info-content">
+                        <!-- Running status -->
+                        {{#if running}}
+                        <p class="running">RUNNING</p><br/>
+                        {{else}}
+                        <p class="not-running">NOT RUNNING</p>
+                        {{/if}}
+                        <!-- Departure date -->
+                        {{#if departure_date}}<p>Departure Date: {{departure_date}}</p>{{/if}}
+                        <!-- Train category -->
+                        {{#if train_cat}}<p>Train Category: {{train_cat}}</p>{{/if}}
+                        <!-- Locomotive type and power type -->
+                        {{#if locomotive}}<p>Locomotive: {{locomotive}} {{#if power_type}}{{power_type}}{{/if}}</p>{{/if}}
+                        <!-- Wagon types and theirs total length-->
+                        {{#if wagons}}<p>Wagons: {{listWagonTypes wagons}}</p>{{/if}}
+                        <!-- Train max speed -->
+                        {{#if max_speed}}<p>Max speed: {{max_speed}}KM/h</p>{{/if}}
+                        <!-- Announcement when the train is not available -->
+                        {{#if message}}<p>{{message}}</p>{{/if}}
+                    </div>
+                </div>
+            </div>
+            {{/train_compositions}}
+        </div>
+
+        <!-- Footer -->
+        <div class="row page-footer">
+            <small>Train composition data from
+                <a href="https://rata.digitraffic.fi/api/v1/doc/index.html" title="DIGITRAFFIC">DIGITRAFFIC</a>
+                - Copyright {{copyright_year}} - Khue Quang Nguyen
+            </small>
+        </div>
+
+    </script>
+</div>
+
+<!-- Script Loader -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../js/bootstrap.min.js"></script>
+<!-- jQuery -->
+<script src="../js/lib/jquery-3.2.1.min.js"></script>
+<!-- For marquee effect -->
+<script src="../js/lib/jquery.marquee.min.js"></script>
+<!-- Handlebars template engine -->
+<script src="../js/lib/handlebars-v4.0.10.js"></script>
+<!-- Custom scripts -->
+<script src="../js/main.js"></script>
+</body>
+</html>
