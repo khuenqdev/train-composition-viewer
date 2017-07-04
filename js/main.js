@@ -122,10 +122,11 @@ Handlebars.registerHelper('listWagonTypes', function (wagons) {
     var wagonTypes = '';
     var totalLengths = 0;
     var counter = 0;
+    console.log(wagons);
     jQuery.each(wagons, function (idx, wagon) {
         counter++;
-        wagonTypes += wagon.wagonType;
-        if (counter < wagons.length) {
+        wagonTypes += typeof(wagon.wagonType) !== 'undefined' ? wagon.wagonType : '';
+        if (typeof(wagon.wagonType) !== 'undefined' && counter < wagons.length) {
             wagonTypes += ', ';
         }
         totalLengths += wagon.length / 100;

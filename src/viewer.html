@@ -55,7 +55,8 @@
                 <div class="panel {{panel_type}}">
                     <div class="panel-heading">
                         <!-- trainType + trainNumber beginStation - endStation -->
-                        <h3 class="panel-title train-info">{{train_id}} {{#if route}}<span class="route">[{{route}}]</span>{{/if}}</h3>
+                        <h3 class="panel-title train-info">{{train_id}} {{#if route}}<span
+                                class="route">[{{route}}]</span>{{/if}}</h3>
                     </div>
                     <div class="panel-body train-info train-info-content">
                         <!-- Running status -->
@@ -64,18 +65,47 @@
                         {{else}}
                         <p class="not-running">NOT RUNNING</p>
                         {{/if}}
-                        <!-- Departure date -->
-                        {{#if departure_date}}<p>Departure Date: {{departure_date}}</p>{{/if}}
-                        <!-- Train category -->
-                        {{#if train_cat}}<p>Train Category: {{train_cat}}</p>{{/if}}
-                        <!-- Locomotive type and power type -->
-                        {{#if locomotive}}<p>Locomotive: {{locomotive}} {{#if power_type}}{{power_type}}{{/if}}</p>{{/if}}
-                        <!-- Wagon types and theirs total length-->
-                        {{#if wagons}}<p>Wagons: {{listWagonTypes wagons}}</p>{{/if}}
-                        <!-- Train max speed -->
-                        {{#if max_speed}}<p>Max speed: {{max_speed}}KM/h</p>{{/if}}
-                        <!-- Announcement when the train is not available -->
-                        {{#if message}}<p>{{message}}</p>{{/if}}
+                        <div class="train-info-main">
+                            <table class="train" cellpadding="3px">
+                                <!-- Departure date -->
+                                {{#if departure_date}}
+                                <tr>
+                                    <td><span class="label label-info label-train-info">Departure Date</span></td>
+                                    <td>{{departure_date}}</td>
+                                </tr>
+                                {{/if}}
+                                <!-- Train category -->
+                                {{#if train_cat}}
+                                <tr>
+                                    <td><span class="label label-info label-train-info">Train Category</span></td>
+                                    <td>{{train_cat}}</td>
+                                </tr>
+                                {{/if}}
+                                <!-- Locomotive type and power type -->
+                                {{#if locomotive}}
+                                <tr>
+                                    <td><span class="label label-info label-train-info">Locomotive</span></td>
+                                    <td>{{locomotive}} {{#if power_type}}{{power_type}}{{/if}}</td>
+                                </tr>
+                                {{/if}}
+                                <!-- Wagon types and theirs total length-->
+                                {{#if wagons}}
+                                <tr>
+                                    <td><span class="label label-info label-train-info">Wagons</span></td>
+                                    <td>{{listWagonTypes wagons}}</td>
+                                </tr>
+                                {{/if}}
+                                <!-- Train max speed -->
+                                {{#if max_speed}}
+                                <tr>
+                                    <td><span class="label label-info label-train-info">Max speed</span></td>
+                                    <td>{{max_speed}}KM/h</td>
+                                </tr>
+                                {{/if}}
+                            </table>
+                            <!-- Announcement when the train is not available -->
+                            {{#if message}}<p>{{message}}</p>{{/if}}
+                        </div>
                     </div>
                 </div>
             </div>

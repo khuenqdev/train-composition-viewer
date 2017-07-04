@@ -12,9 +12,24 @@
     text-align: center;
 }
 
+#content .train-info-main {
+    padding: 0 20px;
+}
+
+#content .train-info-main .train {
+    width: 100%;
+    text-align: center;
+}
+
 #content .train-info-content {
     height: 200px;
     overflow: hidden;
+}
+
+#content .label-train-info{
+    width: 100px;
+    display: block;
+    margin: 0 auto;
 }
 
 #content .train-info .route {
