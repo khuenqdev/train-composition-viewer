@@ -48,7 +48,7 @@
 
 #content .train-info-content .running {
     color: limegreen;
-    margin-top: -10px;
+    margin-bottom: -10px;
 }
 
 #content .train-info-content .js-marquee {
