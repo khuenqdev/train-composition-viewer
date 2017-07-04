@@ -12,7 +12,7 @@
     <link rel="icon" href="../favicon.ico">
 
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Train Composition Viewer</title>
+    <title>TrainComp</title>
 
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -35,12 +35,13 @@
     <script id="content-template" type="text/x-handlebars-template">
 
         <!-- Header -->
-        <div class="page-header">
-            <h1>&#128646; {{header_title}}</h1>
+        <div class="page-header wrapped-content">
+            <h1 class="app-icon header-text">&#128646;</h1>
+            <h1 class="header-text">{{header_title}}<br/><small>{{app_info}}</small></h1>
         </div>
 
         <!-- Main content -->
-        <div class="row" id="content">
+        <div class="row wrapped-content" id="content">
             <div class="station-opt">
                 <label for="stations">Stations</label>&nbsp;
                 <select class="station-selector" onchange="changeStation(this)" id="stations">
@@ -48,6 +49,7 @@
                     <option value="{{stationShortCode}}">{{stationName}}</option>
                     {{/stations}}
                 </select>
+                <button class="btn btn-success btn-sm" id="refresh" value="Refresh" onclick="refresh()">Refresh</button>
             </div>
 
             {{#train_compositions}}
@@ -61,7 +63,7 @@
                     <div class="panel-body train-info train-info-content">
                         <!-- Running status -->
                         {{#if running}}
-                        <p class="running">RUNNING</p><br/>
+                        <div class="running">RUNNING</div><br/><br/>
                         {{else}}
                         <p class="not-running">NOT RUNNING</p>
                         {{/if}}
@@ -113,7 +115,7 @@
         </div>
 
         <!-- Footer -->
-        <div class="row page-footer">
+        <div class="row page-footer wrapped-content">
             <small>Train composition data from
                 <a href="https://rata.digitraffic.fi/api/v1/doc/index.html" title="DIGITRAFFIC">DIGITRAFFIC</a>
                 - Copyright {{copyright_year}} - Khue Quang Nguyen

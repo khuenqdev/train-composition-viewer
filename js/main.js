@@ -8,6 +8,7 @@
 var page_content = jQuery("#content-template").html();
 // Compile the template to process annotations
 var template = Handlebars.compile(page_content);
+var marqueed = false;
 
 /** Declare necessary API information **/
 var station_url = 'https://rata.digitraffic.fi/api/v1/metadata/stations';
@@ -104,14 +105,18 @@ function renderPage(train_info) {
     })).then(function(stations) {
         // Define data that is used in the page
         var data = {
-            header_title: "Train Composition Viewer",
+            header_title: "TrainComp",
+            app_info: "A train composition viewer for Finland",
             train_compositions: train_info,
             stations: stations,
             copyright_year: new Date().getFullYear()
         };
-        jQuery('#wrapper').append(template(data));
+        jQuery('#wrapper').html(template(data));
         jQuery('#stations').val(requestedStation);
-        jQuery('.running').marquee();
+        if (!marqueed) {
+            jQuery('.running').marquee();
+            marqueed = true;
+        }
     });
 }
 
@@ -122,7 +127,6 @@ Handlebars.registerHelper('listWagonTypes', function (wagons) {
     var wagonTypes = '';
     var totalLengths = 0;
     var counter = 0;
-    console.log(wagons);
     jQuery.each(wagons, function (idx, wagon) {
         counter++;
         wagonTypes += typeof(wagon.wagonType) !== 'undefined' ? wagon.wagonType : '';
@@ -140,6 +144,14 @@ Handlebars.registerHelper('listWagonTypes', function (wagons) {
  */
 function changeStation(element) {
     location.href = '?station=' + jQuery(element).val();
+}
+
+function refresh() {
+    jQuery('.wrapped-content').wrapAll('<script id="content-template" type="text/x-handlebars-template"></script>');
+    page_content = jQuery("#content-template").html();
+    template = Handlebars.compile(page_content);
+    requestTrainData(requestedStation, renderPage);
+    jQuery('.running').css('color', 'limegreen');
 }
 
 /**

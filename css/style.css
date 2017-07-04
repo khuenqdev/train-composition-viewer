@@ -4,6 +4,16 @@
     padding: 30px;
 }
 
+#wrapper .app-icon {
+    text-align: center;
+    width: 10%;
+    font-size: 6em;
+}
+
+#wrapper .header-text {
+    display: inline-block;
+}
+
 #content {
     padding: 10px;
 }
@@ -26,7 +36,7 @@
     overflow: hidden;
 }
 
-#content .label-train-info{
+#content .label-train-info {
     width: 100px;
     display: block;
     margin: 0 auto;
@@ -37,6 +47,11 @@
 }
 
 #content .train-info-content .running {
+    color: limegreen;
+    margin-top: -10px;
+}
+
+#content .train-info-content .js-marquee {
     color: limegreen;
 }
 
