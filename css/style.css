@@ -18,6 +18,9 @@
     padding: 10px;
 }
 
+#content .train-panel {
+}
+
 #content .train-info {
     text-align: center;
 }
@@ -32,7 +35,8 @@
 }
 
 #content .train-info-content {
-    height: 200px;
+    min-height: 200px;
+    max-height: 500px;
     overflow: hidden;
 }
 

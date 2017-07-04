@@ -16,7 +16,7 @@ var train_url = 'https://rata.digitraffic.fi/api/v1/live-trains';
 var compositions_url = 'https://rata.digitraffic.fi/api/v1/compositions/';
 
 // Get station parameter
-var urlParams = new URLSearchParams(window.location.search);
+var urlParams = new URLSearchParams(location.search);
 var requestedStation = urlParams.get("station");
 
 /**
