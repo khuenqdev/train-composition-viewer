@@ -16,8 +16,47 @@ var train_url = 'https://rata.digitraffic.fi/api/v1/live-trains';
 var compositions_url = 'https://rata.digitraffic.fi/api/v1/compositions/';
 
 // Get station parameter
-var urlParams = new URLSearchParams(location.search);
-var requestedStation = urlParams.get("station");
+var requestedStation = getRequestedParam("station");
+
+/**
+ * Get requested station parameters
+ * @param name
+ * @returns {boolean}
+ */
+function getRequestedParam(name) {
+    // Normalize the param name
+    name = name.toLowerCase();
+
+    var queryString = window.location.search.slice(1);
+    var paramValue = null;
+
+    if (queryString) {
+        // Get rid of anchors
+        queryString = queryString.split('#')[0];
+
+        // Get query components
+        var components = queryString.split('&');
+
+        jQuery.each(components, function(idx, component) {
+            var a = component.split('=');
+
+            var paramNum = undefined;
+            var paramName = a[0].replace(/\[\d*\]/, function(v) {
+                paramNum = v.slice(1,-1);
+                return '';
+            });
+
+            // set parameter value (use 'true' if empty)
+            paramValue = typeof(a[1])==='undefined' ? true : a[1];
+
+            if (paramName === name) {
+                return false;
+            }
+        });
+    }
+
+    return paramValue;
+}
 
 /**
  * Request composition data for each train
