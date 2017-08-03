@@ -1,3 +1,5 @@
+A project for monitoring train composition in Finland. More details below:
+
 *******************************************************************
 *             PLAYMORE GAMES TRAIN COMPOSITION VIEWER             *
 *******************************************************************
@@ -45,6 +47,7 @@ Train compositions can be fetched from
 https://rata.digitraffic.fi/api/v1/compositions/960?departure_date=2017-05-02
 
 From the above link: 
+
   960 is the 'trainNumber'
   departure_date should be filled with the current departure date fetched
   from the live-trains API above. That field is called 'departureDate' in 
